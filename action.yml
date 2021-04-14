@@ -1,0 +1,27 @@
+name: Setup Nexus credentials for sbt
+inputs:
+  host:
+    description: The hostname for Nexus
+    required: true
+  realm:
+    description: The realm for the Nexus repository
+    required: false
+    default: Sonatype Nexus Repository Manager
+  user:
+    description: Nexus user name
+    required: true
+  password:
+    description: Nexus password
+    required: true
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        mkdir -p $HOME/.ivy2
+        cat <<-EOF > $HOME/.ivy2/.credentials
+          realm=${{ input.realm }}
+          host=${{ input.host }}
+          user=${{ inputs.user }}
+          password=${{ inputs.password }}
+        EOF
