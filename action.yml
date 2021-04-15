@@ -20,8 +20,8 @@ runs:
       run: |
         mkdir -p $HOME/.ivy2
         cat <<-EOF > $HOME/.ivy2/.credentials
-          realm=${{ input.realm }}
-          host=${{ input.host }}
+          realm=${{ inputs.realm }}
+          host=${{ inputs.host }}
           user=${{ inputs.user }}
           password=${{ inputs.password }}
         EOF
